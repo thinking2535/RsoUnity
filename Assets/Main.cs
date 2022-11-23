@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    Test t;
     void Awake()
     {
-        Test tt = UnityEngine.Object.Instantiate(t);
     }
 }

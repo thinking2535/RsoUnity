@@ -1,17 +1,18 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace rso.unity
 {
-    public class CInputKey
+    public class InputKey
     {
         public delegate void FCallback(KeyCode keyCode, bool isPressed);
 
         FCallback _fCallback;
         List<KeyCode> _keyCodes = new List<KeyCode>();
         HashSet<KeyCode> _pressedKeys = new HashSet<KeyCode>();
-        public CInputKey(FCallback callback)
+        public InputKey(FCallback callback)
         {
             _fCallback = callback;
         }
@@ -44,3 +45,4 @@ namespace rso.unity
         }
     }
 }
+#endif

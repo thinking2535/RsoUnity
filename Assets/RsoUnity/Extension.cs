@@ -52,6 +52,20 @@ namespace rso.unity
                 Collider_.transform.ToSTransform(),
                 Collider_.ToSRectCollider2D());
         }
+        public static Vector2 WorldToClippedLocalPoint(this Camera self, Vector2 worldPosition, RectTransform rect)
+        {
+            Vector2 localPoint;
+
+            var screenPoint = self.WorldToScreenPoint(worldPosition);
+            var screenPointLeftMargin = Screen.width * self.rect.x;
+            var screenPointBottomMargin = Screen.height * self.rect.y;
+            screenPoint.x -= screenPointLeftMargin;
+            screenPoint.y -= screenPointBottomMargin;
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, screenPoint, null, out localPoint); // don't care return false
+
+            return localPoint;
+        }
 #if UNITY_EDITOR
         public static string getFullPrefabPathNameWithoutExtension(this GameObject self)
         {

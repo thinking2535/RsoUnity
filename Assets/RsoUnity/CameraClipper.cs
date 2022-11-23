@@ -2,32 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraClipper : MonoBehaviour
+namespace rso.unity
 {
-    [SerializeField] public new Camera camera;
-    void OnPreCull()
+    public class CameraClipper : MonoBehaviour
     {
-        GL.Clear(false, true, Color.clear);
-    }
-    public void clip(float aspectRatio) // width divided by height
-    {
-        var screenAspectRatio = (float)Screen.width / (float)Screen.height;
-        float x = 0.0f;
-        float y = 0.0f;
-        float width = 1.0f;
-        float height = 1.0f;
-
-        if (screenAspectRatio > aspectRatio)
+        public new Camera camera;
+        void OnPreCull()
         {
-            width = aspectRatio / screenAspectRatio;
-            x = (1.0f - width) * 0.5f;
+            GL.Clear(false, true, Color.clear);
         }
-        else
+        public void clip(float aspectRatio) // width divided by height
         {
-            height = screenAspectRatio / aspectRatio;
-            y = (1.0f - height) * 0.5f;
-        }
+            var screenAspectRatio = (float)Screen.width / (float)Screen.height;
+            float x = 0.0f;
+            float y = 0.0f;
+            float width = 1.0f;
+            float height = 1.0f;
 
-        camera.rect = new Rect(x, y, width, height);
+            if (screenAspectRatio > aspectRatio)
+            {
+                width = aspectRatio / screenAspectRatio;
+                x = (1.0f - width) * 0.5f;
+            }
+            else
+            {
+                height = screenAspectRatio / aspectRatio;
+                y = (1.0f - height) * 0.5f;
+            }
+
+            camera.rect = new Rect(x, y, width, height);
+        }
     }
 }

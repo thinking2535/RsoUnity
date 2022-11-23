@@ -1,0 +1,13 @@
+PlayerSettings
+	Player
+		OtherSettings
+			Target API Level : 최신 선택
+			Scripting Backend : IL2CPP
+			Target Architectures
+				ARMv7 : check
+				ARM64 : check
+			Bundle Version Code : 올릴것
+
+		Publishing Settings
+			Build
+				Custom Main Manifest : check
